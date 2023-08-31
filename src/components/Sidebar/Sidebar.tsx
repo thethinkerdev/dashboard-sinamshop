@@ -1,5 +1,5 @@
 import SidebarItem from "./SidebarItem";
-import { FaUser, FaUserEdit } from "react-icons/fa";
+import { FaNewspaper, FaUser, FaUserEdit, FaUsers } from "react-icons/fa";
 import {
   BiSolidReceipt,
   BiSolidCommentAdd,
@@ -9,7 +9,7 @@ import {
   BiCode,
 } from "react-icons/bi";
 
-import { BsBagCheck, BsBagDashFill, BsDatabaseAdd } from "react-icons/bs";
+import { BsBagCheck, BsBagCheckFill, BsBagDashFill, BsDatabaseAdd, BsReceipt } from "react-icons/bs";
 import { TbLockAccess } from "react-icons/tb";
 import {
   AiFillDashboard,
@@ -22,9 +22,17 @@ import {
 
 import SidebarLabelItem from "./SidebarLabelItem";
 import SidebarLogoItem from "./SidebarLogoItem";
-export default function Sidebar() {
+
+interface Props {
+  isSidebarOpen: boolean;
+}
+export default function Sidebar({ isSidebarOpen }: Props) {
   return (
-    <div className="fixed right-0 top-0 bg-slate-800 h-full w-80 overflow-hidden overflow-y-scroll">
+    <div
+      className={`sidebar fixed bg-slate-800 h-full w-80 overflow-hidden overflow-y-scroll ${
+        isSidebarOpen ? "open" : "close"
+      } `}
+    >
       <ul className="p-0">
         <SidebarLogoItem />
         <SidebarItem icon={<AiFillDashboard />} to="/" text="داشبورد" />
@@ -36,7 +44,7 @@ export default function Sidebar() {
         <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد محصول" />
 
         <SidebarLabelItem text="کاربران" />
-        <SidebarItem icon={<FaUser />} to="/users" text="کاربران" />
+        <SidebarItem icon={<FaUsers />} to="/users" text="کاربران" />
 
         <SidebarItem icon={<TbLockAccess />} to="/users" text="سطح دسترسی" />
 
@@ -44,7 +52,7 @@ export default function Sidebar() {
 
         <SidebarLabelItem text="مقالات" />
 
-        <SidebarItem icon={<FaUser />} to="/users" text="مقالات" />
+        <SidebarItem icon={<FaNewspaper />} to="/users" text="مقالات" />
 
         <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد مقاله" />
 
@@ -66,7 +74,7 @@ export default function Sidebar() {
 
         <SidebarLabelItem text="پرداخت‌ها" />
 
-        <SidebarItem icon={<FaUser />} to="/users" text="پرداخت های من" />
+        <SidebarItem icon={<BsReceipt />} to="/users" text="پرداخت های من" />
 
         <SidebarItem
           icon={<BiSolidReceipt />}
@@ -74,7 +82,7 @@ export default function Sidebar() {
           text="تمام پرداخت‌ها"
         />
 
-        <SidebarItem icon={<BsBagCheck />} to="/users" text="پرداخت‌های موفق" />
+        <SidebarItem icon={<BsBagCheckFill />} to="/users" text="پرداخت‌های موفق" />
 
         <SidebarItem
           icon={<BsBagDashFill />}
@@ -102,7 +110,11 @@ export default function Sidebar() {
           text="پیغام‌ها"
         />
 
-        <SidebarItem icon={<AiFillSetting />} to="/users" text="ویرایش رمز عبور"/>
+        <SidebarItem
+          icon={<AiFillSetting />}
+          to="/users"
+          text="ویرایش رمز عبور"
+        />
 
         <SidebarLabelItem>
           <div className="flex justify-center items-center space-x-2 space-x-reverse">

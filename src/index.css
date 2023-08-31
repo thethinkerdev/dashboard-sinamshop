@@ -2,9 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@media screen and (min-width: 1200px) {
+  .sidebar {
+    animation: openSidebar 0.3s forwards;
+  }
+}
+
+.sidebar.open {
+  animation: openSidebar 1s forwards;
+}
+
+.sidebar.close {
+  animation: closeSidebar 1s forwards;
+}
+
+@keyframes closeSidebar {
+  from {
+    @apply right-0;
+  }
+
+  to {
+    @apply -right-80;
+  }
+}
+
+@keyframes openSidebar {
+  from {
+    @apply -right-80;
+  }
+  to {
+    @apply right-0;
+  }
 }
