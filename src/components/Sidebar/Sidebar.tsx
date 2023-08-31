@@ -1,6 +1,7 @@
 import SidebarItem from "./SidebarItem";
-import { FaNewspaper, FaUser, FaUserEdit, FaUsers } from "react-icons/fa";
+import { FaNewspaper, FaUserEdit, FaUsers } from "react-icons/fa";
 import {
+  BiExit,
   BiSolidReceipt,
   BiSolidCommentAdd,
   BiSolidCommentMinus,
@@ -9,7 +10,12 @@ import {
   BiCode,
 } from "react-icons/bi";
 
-import { BsBagCheck, BsBagCheckFill, BsBagDashFill, BsDatabaseAdd, BsReceipt } from "react-icons/bs";
+import {
+  BsBagCheckFill,
+  BsBagDashFill,
+  BsDatabaseAdd,
+  BsReceipt,
+} from "react-icons/bs";
 import { TbLockAccess } from "react-icons/tb";
 import {
   AiFillDashboard,
@@ -22,6 +28,7 @@ import {
 
 import SidebarLabelItem from "./SidebarLabelItem";
 import SidebarLogoItem from "./SidebarLogoItem";
+import SidebarItemExit from "./SidebarItemExit";
 
 interface Props {
   isSidebarOpen: boolean;
@@ -39,81 +46,123 @@ export default function Sidebar({ isSidebarOpen }: Props) {
 
         <SidebarLabelItem text="محصولات" />
 
-        <SidebarItem icon={<AiFillShopping />} to="/users" text="محصولات" />
+        <SidebarItem icon={<AiFillShopping />} to="/products" text="محصولات" />
 
-        <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد محصول" />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/products/create"
+          text="ایجاد محصول"
+        />
 
         <SidebarLabelItem text="کاربران" />
         <SidebarItem icon={<FaUsers />} to="/users" text="کاربران" />
 
-        <SidebarItem icon={<TbLockAccess />} to="/users" text="سطح دسترسی" />
+        <SidebarItem
+          icon={<TbLockAccess />}
+          to="/users/manage-acl"
+          text="سطح دسترسی"
+        />
 
-        <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد کاربر" />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/users/create"
+          text="ایجاد کاربر"
+        />
 
         <SidebarLabelItem text="مقالات" />
 
-        <SidebarItem icon={<FaNewspaper />} to="/users" text="مقالات" />
+        <SidebarItem icon={<FaNewspaper />} to="/articles" text="مقالات" />
 
-        <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد مقاله" />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/articles/create"
+          text="ایجاد مقاله"
+        />
 
         <SidebarLabelItem text="نظرات" />
 
-        <SidebarItem icon={<AiOutlineComment />} to="/users" text="نظرات" />
+        <SidebarItem icon={<AiOutlineComment />} to="/comments" text="نظرات" />
 
         <SidebarItem
           icon={<BiSolidCommentAdd />}
-          to="/users"
+          to="/comments/approved"
           text="نظرات تایید شده"
         />
 
         <SidebarItem
           icon={<BiSolidCommentMinus />}
-          to="/users"
+          to="/comments/not-approved"
           text="نظرات تایید نشده"
         />
 
         <SidebarLabelItem text="پرداخت‌ها" />
 
-        <SidebarItem icon={<BsReceipt />} to="/users" text="پرداخت های من" />
+        <SidebarItem icon={<BsReceipt />} to="/payments" text="پرداخت های من" />
 
         <SidebarItem
           icon={<BiSolidReceipt />}
-          to="/users"
+          to="/payments/all"
           text="تمام پرداخت‌ها"
         />
 
-        <SidebarItem icon={<BsBagCheckFill />} to="/users" text="پرداخت‌های موفق" />
+        <SidebarItem
+          icon={<BsBagCheckFill />}
+          to="/payments/successful"
+          text="پرداخت‌های موفق"
+        />
 
         <SidebarItem
           icon={<BsBagDashFill />}
-          to="/users"
+          to="/payments/failed"
           text="پرداخت‌های ناموفق"
         />
 
         <SidebarLabelItem text="تخفیف‌ها" />
-        <SidebarItem icon={<BiSolidDiscount />} to="/users" text="تخفیف‌ها" />
+        <SidebarItem
+          icon={<BiSolidDiscount />}
+          to="/discounts"
+          text="تخفیف‌ها"
+        />
 
-        <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد تخفیف" />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/discounts/create"
+          text="ایجاد تخفیف"
+        />
 
         <SidebarLabelItem text="دسته‌ها" />
-        <SidebarItem icon={<BiSolidCategory />} to="/users" text="دسته‌ها" />
+        <SidebarItem
+          icon={<BiSolidCategory />}
+          to="/categories"
+          text="دسته‌ها"
+        />
 
-        <SidebarItem icon={<BsDatabaseAdd />} to="/users" text="ایجاد دسته" />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/categories/create"
+          text="ایجاد دسته"
+        />
 
         <SidebarLabelItem text="شخصی" />
 
-        <SidebarItem icon={<FaUserEdit />} to="/users" text="تنظیمات" />
+        <SidebarItem icon={<FaUserEdit />} to="/settings" text="تنظیمات" />
 
         <SidebarItem
           icon={<AiFillNotification />}
-          to="/users"
+          to="/messages"
           text="پیغام‌ها"
         />
 
         <SidebarItem
           icon={<AiFillSetting />}
-          to="/users"
+          to="/change-password"
           text="ویرایش رمز عبور"
+        />
+
+        <SidebarItemExit
+          icon={<BiExit />}
+          to="/change-password"
+          text="خروج"
         />
 
         <SidebarLabelItem>
