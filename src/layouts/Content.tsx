@@ -8,11 +8,9 @@ export default function Content({ isSidebarOpen, children }: Props) {
   return (
     <section
       style={{ flex: "1" }}
-      className={`${isSidebarOpen ? "pr-80  mx-8" : "p-0 mx-0"}`}
+      className={`${isSidebarOpen ? "pr-80" : "pr-0"} mx-5`}
     >
-      <div className="mt-3">
-      {children}
-      </div>
+      <div className="mt-3">{children}</div>
     </section>
   );
 }
