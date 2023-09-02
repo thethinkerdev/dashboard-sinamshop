@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 interface Props {
@@ -9,34 +9,18 @@ interface Props {
 }
 
 export default function SidebarItem({ children, to, icon, text }: Props) {
-  const [isItemActivated, setIsItemActivated] = useState<boolean>(false);
-  const textElement = to ? (
-    <NavLink
-      style={({ isActive }) => {
-        if (isActive) {
-          setIsItemActivated(true);
-          return {};
-        } else {
-          setIsItemActivated(false);
-        }
-      }}
-      to={to ?? "#"}
-    >
-      {" "}
-      {children ?? text}
-    </NavLink>
-  ) : (
-    children ?? text
-  );
-
   return (
-    <li
-      className={`p-3 text-zinc-300 flex space-x-4 space-x-reverse items-center w-full  ${
-        isItemActivated ? "bg-zinc-800" : ""
-      }`}
+    <NavLink
+      to={to ?? "#"}
+      style={({ isActive }) => {
+        return isActive ? { backgroundColor: "#202020" } : {};
+      }}
+      className="p-3 text-zinc-300 flex space-x-2 space-x-reverse items-center w-[300px] rounded my-3 mr-1"
     >
+      <i>
       {icon && <span style={{ fontSize: "30px" }}>{icon}</span>}
-      {textElement}
-    </li>
+      </i>
+      <p>{children ?? text}</p>
+    </NavLink>
   );
 }

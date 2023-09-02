@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import ButtonTrash from "../../components/Table/ButtonTrash";
-import ButtonRedirectToEdit from "../../components/Table/ButtonRedirectToEdit";
 import Title from "../../components/Title";
 import Table from "../../components/Table";
+import ButtonTrash from "../../components/Buttons/ButtonRedirectToEdit";
+import ButtonRedirectToEdit from "../../components/Buttons/ButtonTrash";
+import TableHeadItem from "../../components/Table/TableHeadItem";
 
 export default function Products() {
   return (
@@ -42,39 +43,52 @@ export default function Products() {
       </div>
 
       <Table>
-        <thead className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-          <tr>
-            <th scope="col" className=" px-6 py-4">
-              #
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              تصویر محصول
-            </th>
+        <Table.Head>
+          <Table.Row>
+            <Table.HeadItem>#</Table.HeadItem>
+            <Table.HeadItem>تصویر محصول</Table.HeadItem>
 
-            <th scope="col" className=" px-6 py-4">
-              نام محصول
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              قیمت
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              دسته‌ٔ محصول
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              تعداد
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              فروشنده
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              عملیات
-            </th>
-            <th scope="col" className=" px-6 py-4">
-              تاریخ ایجاد
-            </th>
-          </tr>
-        </thead>
-        <Table.Body></Table.Body>
+            <Table.HeadItem>نام محصول</Table.HeadItem>
+
+            <Table.HeadItem>قیمت</Table.HeadItem>
+
+            <Table.HeadItem>دسته‌ٔ محصول</Table.HeadItem>
+
+            <Table.HeadItem>تعداد</Table.HeadItem>
+            <Table.HeadItem>فروشنده</Table.HeadItem>
+
+            <Table.HeadItem>عملیات</Table.HeadItem>
+            <TableHeadItem>تاریخ ایجاد</TableHeadItem>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {[1, 2, 3, 4, 5, 6].map((number, index) => (
+            <Table.Row key={index}>
+              <Table.BodyItem>{index + 1}</Table.BodyItem>
+              <Table.BodyItem>
+                <img className="w-full max-h-[200px]" src="/logo.svg" alt="" />
+              </Table.BodyItem>
+
+              <Table.BodyItem>کیف وارداتی تک طرح</Table.BodyItem>
+              <Table.BodyItem>۹۰۰،۰۰۰ تومان</Table.BodyItem>
+              <Table.BodyItem>
+                <span className="px-3 py-2 rounded  shadow-2xl text-zinc-900 border-b-2">
+                  کیف
+                </span>
+              </Table.BodyItem>
+
+              <Table.BodyItem>1</Table.BodyItem>
+              <Table.BodyItem>Admin</Table.BodyItem>
+              <Table.BodyItem>
+                <div className="flex space-x-4 space-x-reverse max-w-[200px] mx-auto">
+                  <ButtonTrash />
+                  <ButtonRedirectToEdit />
+                </div>
+              </Table.BodyItem>
+              <Table.BodyItem>چهارشنبه، ۲۱ تیر ۰۲</Table.BodyItem>
+            </Table.Row>
+          ))}
+        </Table.Body>
       </Table>
     </section>
   );
