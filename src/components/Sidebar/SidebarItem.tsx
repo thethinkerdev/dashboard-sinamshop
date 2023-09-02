@@ -16,10 +16,10 @@ export default function SidebarItem({ children, to, icon, text }: Props) {
         return isActive ? { backgroundColor: "#202020" } : {};
       }}
       className="p-3 text-zinc-300 flex space-x-2 space-x-reverse items-center w-[300px] rounded my-3 mr-1"
+
+      end
     >
-      <i>
-      {icon && <span style={{ fontSize: "30px" }}>{icon}</span>}
-      </i>
+      <i>{icon && <span style={{ fontSize: "30px" }}>{icon}</span>}</i>
       <p>{children ?? text}</p>
     </NavLink>
   );

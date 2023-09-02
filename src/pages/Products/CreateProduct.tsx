@@ -7,9 +7,38 @@ import Input from "./../../components/Form/Input";
 import Label from "../../components/Form/Label";
 import File from "../../components/Form/File";
 import Textarea from "../../components/Form/Textarea";
-import Select from "../../components/Form/Select/Select";
+import ReactSelect from "react-select";
+
+// Ckeditor
+import "./../../ckeditor/build/ckeditor";
+import { useEffect } from "react";
 
 export default function CreateProduct() {
+  const options = [
+    { value: "blues", label: "Blues" },
+    { value: "rock", label: "Rock" },
+    { value: "jazz", label: "Jazz" },
+    { value: "orchestra", label: "Orchestra" },
+  ];
+
+  useEffect(() => {
+    ClassicEditor.create(document.querySelector("#textarea"), {
+      simpleUpload: {
+        // The URL that the images are uploaded to.
+        uploadUrl: "/admin/panel/upload-image",
+
+        // Enable the XMLHttpRequest.withCredentials property.
+        withCredentials: true,
+
+        // Headers sent along with the XMLHttpRequest to the upload server.
+        headers: {
+          "X-CSRF-TOKEN": "CSRF-Token",
+          Authorization: "Bearer <JSON Web Token>",
+        },
+      },
+    }).catch((error) => {});
+  }, []);
+
   return (
     <section>
       <div className="flex items-center justify-between flex-wrap space-y-5 sm:space-y-0 border-b border-solid border-slate-300 pb-4">
@@ -23,53 +52,48 @@ export default function CreateProduct() {
       <Form className="mt-3">
         <Box className="grid grid-cols-2 place-items-center">
           <Box className="space-y-3 space-y-reverse">
-            <Label className="block">نام مقاله</Label>
+            <Label className="block">نام محصول</Label>
             <Input />
           </Box>
 
           <Box className="mt-3 space-y-3 space-y-reverse">
             <Label className="block">قیمت</Label>
-            <Input type="number" />
+            <Input direction="ltr" price placeholder="123,000" />
           </Box>
         </Box>
 
         <Box className="space-y-3 space-y-reverse">
           <Label className="block">توضیحات</Label>
-          <Textarea wFull></Textarea>
+          <Textarea id="textarea" wFull></Textarea>
         </Box>
 
-        <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">تصویر محصول</Label>
-          <File />
-        </Box>
+        <Box className="grid grid-cols-2 place-items-center">
 
-        <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">دیگر تصاویر محصول</Label>
-          <File multiple />
+          <Box className="mt-3 space-y-3 space-y-reverse">
+            <Label className="block">تصویر محصول</Label>
+            <File />
+          </Box>
+
+          <Box className="mt-3 space-y-3 space-y-reverse">
+            <Label className="block">دیگر تصاویر محصول</Label>
+            <File multiple />
+          </Box>
+
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
           <Label className="block">دستهٔ محصول</Label>
-          <Select>
-            <Select.Option>شال</Select.Option>
-            <Select.Option>کیف</Select.Option>
-          </Select>
+          <ReactSelect options={options} />
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
           <Label className="block">ویژگی محصول</Label>
-          <Select>
-            <Select.Option>گوگولی دات کام</Select.Option>
-            <Select.Option>مرغوب</Select.Option>
-          </Select>
+          <ReactSelect options={options} />
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
           <Label className="block">تخفیف محصول</Label>
-          <Select>
-            <Select.Option>تخفیف ٪۲۰</Select.Option>
-            <Select.Option>تخفیف ٪۹۹ میلاد حضرت علی</Select.Option>
-          </Select>
+          <ReactSelect options={options} />
         </Box>
 
         <Submit>ایجاد محصول</Submit>

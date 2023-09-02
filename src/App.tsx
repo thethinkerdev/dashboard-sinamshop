@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Content from "./layouts/Content";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
@@ -51,7 +50,8 @@ export default function App() {
           path="/products/create"
           element={
             <Content isSidebarOpen={isSidebarOpen} children={<CreateProduct />} />
-          }
+          } 
+
         />
 
         <Route
@@ -113,13 +113,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {/* <Footer   /> */}
     </>
   );
 }
-
-/* return (
-    <div className="flex flex-col" style={{ minHeight: "100vh" }}>
-
-    </div>
-  ); */

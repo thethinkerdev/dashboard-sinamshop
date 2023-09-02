@@ -1,4 +1,5 @@
 import React from "react";
+import "./File.css"
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 
