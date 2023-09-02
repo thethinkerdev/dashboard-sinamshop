@@ -15,6 +15,7 @@ import Categories from "./pages/Categories";
 import Settings from "./pages/Settings";
 import Messages from "./pages/Messages";
 import NotFound from "./components/Errors/NotFound";
+import CreateProduct from "./pages/Products/CreateProduct";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
@@ -44,6 +45,15 @@ export default function App() {
             <Content isSidebarOpen={isSidebarOpen} children={<Products />} />
           }
         />
+
+        <Route
+        
+          path="/products/create"
+          element={
+            <Content isSidebarOpen={isSidebarOpen} children={<CreateProduct />} />
+          }
+        />
+
         <Route
           path="/users"
           element={

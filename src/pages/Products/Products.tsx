@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import Title from "../../components/Title";
 import Table from "../../components/Table";
 import ButtonTrash from "../../components/Buttons/ButtonRedirectToEdit";
 import ButtonRedirectToEdit from "../../components/Buttons/ButtonTrash";
 import TableHeadItem from "../../components/Table/TableHeadItem";
+import ButtonRedirect from "../../components/Buttons/ButtonRedirect";
 
 export default function Products() {
   return (
@@ -11,12 +11,7 @@ export default function Products() {
       <div className="flex items-center justify-between flex-wrap space-y-5 sm:space-y-0">
         <Title>مدیریت محصولات</Title>
 
-        <Link
-          className="border border-green-500 text-green-500 rounded shadow px-3 py-2"
-          to="/products/create"
-        >
-          افزودن محصول
-        </Link>
+        <ButtonRedirect status="create" to="/products/create">افزودن محصول</ButtonRedirect>
       </div>
       <div className="flex items-center justify-between mt-3 flex-wrap">
         <div>
