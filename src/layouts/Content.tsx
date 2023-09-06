@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 interface Props {
-  isSidebarOpen: boolean;
+  isSidebarOpen: boolean | null;
   children: React.ReactNode;
 }
 export default function Content({ isSidebarOpen, children }: Props) {
+  const contentClassSidebarCheck: string | null = useMemo(() => {
+    if (isSidebarOpen === null) return null;
+
+    return isSidebarOpen ? "content-active" : "content-deactive";
+  }, [isSidebarOpen]);
+
   return (
     <section
-      style={{ flex: "1" }}
-      className={`${isSidebarOpen ? "pr-80" : "pr-0"} mx-5`}
+      className={`transition-transform pr-0 mx-0 md:pr-80 md:mx-5 ${contentClassSidebarCheck}`}
     >
-      <div className="mt-3">{children}</div>
+      <div className="mt-3 p-3">{children}</div>
     </section>
   );
 }

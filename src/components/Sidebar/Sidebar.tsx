@@ -29,18 +29,18 @@ import {
 import SidebarLabelItem from "./SidebarLabelItem";
 import SidebarLogoItem from "./SidebarLogoItem";
 import SidebarItemExit from "./SidebarItemExit";
+import { LegacyRef } from "react";
 
 interface Props {
-  isSidebarOpen: boolean;
+  sidebarRef: LegacyRef<HTMLElement>;
 }
-export default function Sidebar({ isSidebarOpen }: Props) {
+export default function Sidebar({ sidebarRef}: Props) {
   return (
-    <div
-      className={`sidebar fixed bg-slate-800 h-full w-80 overflow-hidden overflow-y-scroll ${
-        isSidebarOpen ? "open" : "close"
-      } `}
+    <aside
+      className={`sidebar transition-all fixed top-0 right-0 bg-slate-800 w-80 h-screen translate-x-full md:translate-x-0 overflow-y-scroll`}
+      ref={sidebarRef}
     >
-      <ul className="p-0">
+      <ul className="p-0 overflow-hidden">
         <SidebarLogoItem />
         <SidebarItem icon={<AiFillDashboard />} to="/" text="داشبورد" />
 
@@ -159,11 +159,7 @@ export default function Sidebar({ isSidebarOpen }: Props) {
           text="ویرایش رمز عبور"
         />
 
-        <SidebarItemExit
-          icon={<BiExit />}
-          to="/change-password"
-          text="خروج"
-        />
+        <SidebarItemExit icon={<BiExit />} to="/change-password" text="خروج" />
 
         <SidebarLabelItem>
           <div className="flex justify-center items-center space-x-2 space-x-reverse">
@@ -178,6 +174,6 @@ export default function Sidebar({ isSidebarOpen }: Props) {
           </div>
         </SidebarLabelItem>
       </ul>
-    </div>
+    </aside>
   );
 }

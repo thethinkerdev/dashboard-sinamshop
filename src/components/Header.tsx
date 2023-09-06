@@ -1,22 +1,50 @@
 import { IoMdNotifications } from "react-icons/io";
-import { FaBars } from "react-icons/fa";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { LegacyRef, useState } from "react";
+import { GoSidebarCollapse } from "react-icons/go";
 
 interface Props {
-  handleBarClick: () => void;
-  isSidebarOpen: boolean;
+  handleOpenSidebar: () => void;
+  handleCloseSidebar: () => void;
+  barCloseRef: LegacyRef<HTMLElement>;
+  barOpenRef: LegacyRef<HTMLElement>;
 }
-export default function Header({ handleBarClick, isSidebarOpen }: Props) {
+export default function Header({
+  handleCloseSidebar,
+  handleOpenSidebar,
+  barCloseRef,
+  barOpenRef,
+}: Props) {
+  const [activeSidebarClass, setActiveSidebarClass] = useState<string>("");
+
   return (
     <div className="border-b border-solid border-slate-300 p-3">
       <ul
-        className={`${
-          isSidebarOpen ? "pr-80" : ""
-        } mx-5 flex justify-between text-gray-600`}
+        className={`transition-all flex justify-between text-gray-600 pr-0 mx-0 md:pr-80 md:mx-5 ${activeSidebarClass}`}
       >
         <li className="flex items-center space-x-4 space-x-reverse">
-          <i className="cursor-pointer select-none" onClick={handleBarClick}>
-            <FaBars />
+          <i
+            className="bar-open cursor-pointer select-none block md:hidden"
+            onClick={() => {
+              setActiveSidebarClass("content-active");
+              handleOpenSidebar();
+            }}
+            ref={barOpenRef}
+          >
+            <HiBars3BottomRight />
           </i>
+
+          <i
+            className="bar-close cursor-pointer select-none hidden md:block"
+            onClick={() => {
+              setActiveSidebarClass("content-deactive");
+              handleCloseSidebar();
+            }}
+            ref={barCloseRef}
+          >
+            <GoSidebarCollapse />
+          </i>
+
           <a href="">داشبورد</a>
           <a href="">تنظیمات</a>
         </li>

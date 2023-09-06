@@ -15,7 +15,7 @@ export default function SidebarItem({ children, to, icon, text }: Props) {
       style={({ isActive }) => {
         return isActive ? { backgroundColor: "#202020" } : {};
       }}
-      className="p-3 text-zinc-300 flex space-x-2 space-x-reverse items-center w-[300px] rounded my-3 mr-1"
+      className="p-3 text-zinc-300 flex space-x-2 space-x-reverse items-center w-full rounded my-3 mr-1"
 
       end
     >

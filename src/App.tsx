@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Content from "./layouts/Content";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -17,22 +17,55 @@ import NotFound from "./components/Errors/NotFound";
 import CreateProduct from "./pages/Products/CreateProduct";
 import CreateUser from "./pages/Users/CreateUser";
 import CreateArticle from "./pages/Articles/CreateArticle";
+import Shadow from "./components/Shadow";
 
 export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    setIsSidebarOpen(document.body.clientWidth > 1200);
-  }, []);
+  const sidebarRef = useRef<HTMLElement | null>(null);
+  const barOpenRef = useRef<HTMLElement | null>(null);
+  const barCloseRef = useRef<HTMLElement | null>(null);
 
-  const handleBarClick = () => {
-    setIsSidebarOpen((curState) => !curState);
+  const handleOpenSidebar = () => {
+    sidebarRef.current?.classList.remove("sidebar-active", "sidebar-deactive");
+
+    sidebarRef.current?.classList.add("sidebar-active");
+
+    setIsSidebarOpen(true);
+
+      barOpenRef.current.style.display = "none";
+      barCloseRef.current.style.display = "block";
   };
+  const handleCloseSidebar = () => {
+    sidebarRef.current?.classList.remove("sidebar-active", "sidebar-deactive");
+
+    sidebarRef.current?.classList.add("sidebar-deactive");
+
+    setIsSidebarOpen(false);
+
+      barOpenRef.current.style.display = "block";
+      barCloseRef.current.style.display = "none";
+  };
+
   return (
     <>
-      <Sidebar isSidebarOpen={isSidebarOpen} />
-      <Header handleBarClick={handleBarClick} isSidebarOpen={isSidebarOpen} />
+      {isSidebarOpen ? (
+        <Shadow
+          onClick={() => {
+            setIsSidebarOpen(false);
+            handleCloseSidebar();
+          }}
+        />
+      ) : null}
+      <Sidebar sidebarRef={sidebarRef} />
+      <Header
+        barCloseRef={barCloseRef}
+        barOpenRef={barOpenRef}
+        handleOpenSidebar={handleOpenSidebar}
+        handleCloseSidebar={handleCloseSidebar}
+      />
 
+      {/* <div onClick={shadowOnClick} className="shadow-el"></div> */}
       <Routes>
         <Route
           path="/"
@@ -81,7 +114,10 @@ export default function App() {
         <Route
           path="/articles/create"
           element={
-            <Content isSidebarOpen={isSidebarOpen} children={<CreateArticle />} />
+            <Content
+              isSidebarOpen={isSidebarOpen}
+              children={<CreateArticle />}
+            />
           }
         />
 
