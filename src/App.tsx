@@ -19,13 +19,14 @@ import CreateUser from "./pages/Users/CreateUser";
 import CreateArticle from "./pages/Articles/CreateArticle";
 import Shadow from "./components/Shadow";
 import Tickets from "./pages/Tickets";
+import SidebarContext from "./context/SidebarContext";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
 
-  const sidebarRef = useRef<HTMLElement | null>(null);
-  const barOpenRef = useRef<HTMLElement | null>(null);
-  const barCloseRef = useRef<HTMLElement | null>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const barOpenRef = useRef<HTMLElement>(null);
+  const barCloseRef = useRef<HTMLElement>(null);
 
   const handleOpenSidebar = () => {
     sidebarRef.current?.classList.remove("sidebar-active", "sidebar-deactive");
@@ -34,8 +35,10 @@ export default function App() {
 
     setIsSidebarOpen(true);
 
-    barOpenRef.current.style.display = "none";
-    barCloseRef.current.style.display = "block";
+    if (barOpenRef.current && barCloseRef.current) {
+      barOpenRef.current.style.display = "none";
+      barCloseRef.current.style.display = "block";
+    }
   };
   const handleCloseSidebar = () => {
     sidebarRef.current?.classList.remove("sidebar-active", "sidebar-deactive");
@@ -44,12 +47,14 @@ export default function App() {
 
     setIsSidebarOpen(false);
 
-    barOpenRef.current.style.display = "block";
-    barCloseRef.current.style.display = "none";
+    if (barOpenRef.current && barCloseRef.current) {
+      barOpenRef.current.style.display = "block";
+      barCloseRef.current.style.display = "none";
+    }
   };
 
   return (
-    <>
+    <SidebarContext.Provider value={{ isSidebarOpen }}>
       {isSidebarOpen ? (
         <Shadow
           onClick={() => {
@@ -68,118 +73,55 @@ export default function App() {
 
       {/* <div onClick={shadowOnClick} className="shadow-el"></div> */}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Home />} />
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Products />} />
-          }
-        />
+        <Route path="/" element={<Content children={<Home />} />} />
+        <Route path="/products" element={<Content children={<Products />} />} />
 
         <Route
           path="/products/create"
-          element={
-            <Content
-              isSidebarOpen={isSidebarOpen}
-              children={<CreateProduct />}
-            />
-          }
+          element={<Content children={<CreateProduct />} />}
         />
 
-        <Route
-          path="/users"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Users />} />
-          }
-        />
+        <Route path="/users" element={<Content children={<Users />} />} />
 
         <Route
           path="/users/create"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<CreateUser />} />
-          }
+          element={<Content children={<CreateUser />} />}
         />
 
-        <Route
-          path="/articles"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Articles />} />
-          }
-        />
+        <Route path="/articles" element={<Content children={<Articles />} />} />
 
         <Route
           path="/articles/create"
-          element={
-            <Content
-              isSidebarOpen={isSidebarOpen}
-              children={<CreateArticle />}
-            />
-          }
+          element={<Content children={<CreateArticle />} />}
         />
 
-        <Route
-          path="/comments"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Comments />} />
-          }
-        />
-        <Route
-          path="/payments"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Payments />} />
-          }
-        />
+        <Route path="/comments" element={<Content children={<Comments />} />} />
+        <Route path="/payments" element={<Content children={<Payments />} />} />
         <Route
           path="/discounts"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Discounts />} />
-          }
+          element={<Content children={<Discounts />} />}
         />
         <Route
           path="/categories"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Categories />} />
-          }
+          element={<Content children={<Categories />} />}
         />
 
-        <Route
-          path="/tickets"
-          element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets />} />}>
-            
-            
-            <Route path="" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
-            <Route path="users" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
-            <Route path="create" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
+        <Route path="/tickets" element={<Content children={<Tickets />} />}>
+          <Route path="" element={<Content children={<Tickets />} />} />
+          <Route path="users" element={<Content children={<Tickets />} />} />
+          <Route path="create" element={<Content children={<Tickets />} />} />
+        </Route>
 
-            </Route>
-
-        <Route
-          path="/settings"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Settings />} />
-          }
-        />
-        <Route
-          path="/messages"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Messages />} />
-          }
-        />
+        <Route path="/settings" element={<Content children={<Settings />} />} />
+        <Route path="/messages" element={<Content children={<Messages />} />} />
 
         <Route
           path="/change-password"
-          element={
-            <Content isSidebarOpen={isSidebarOpen} children={<Messages />} />
-          }
+          element={<Content children={<Messages />} />}
         />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </SidebarContext.Provider>
   );
 }

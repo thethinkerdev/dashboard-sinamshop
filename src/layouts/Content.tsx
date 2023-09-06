@@ -1,10 +1,14 @@
 import React, { useMemo } from "react";
 
+import { useContext } from "react";
+import SidebarContext from "../context/SidebarContext";
+
 interface Props {
-  isSidebarOpen: boolean | null;
   children: React.ReactNode;
 }
-export default function Content({ isSidebarOpen, children }: Props) {
+export default function Content({ children }: Props) {
+  const { isSidebarOpen } = useContext(SidebarContext);
+
   const contentClassSidebarCheck: string | null = useMemo(() => {
     if (isSidebarOpen === null) return null;
 

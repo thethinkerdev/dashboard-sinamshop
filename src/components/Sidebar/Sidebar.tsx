@@ -16,7 +16,6 @@ import {
   BsBagCheckFill,
   BsBagDashFill,
   BsDatabaseAdd,
-  BsPeopleFill,
   BsReceipt,
 } from "react-icons/bs";
 import { TbLockAccess } from "react-icons/tb";
