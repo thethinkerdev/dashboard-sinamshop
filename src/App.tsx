@@ -18,6 +18,7 @@ import CreateProduct from "./pages/Products/CreateProduct";
 import CreateUser from "./pages/Users/CreateUser";
 import CreateArticle from "./pages/Articles/CreateArticle";
 import Shadow from "./components/Shadow";
+import Tickets from "./pages/Tickets";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
@@ -33,8 +34,8 @@ export default function App() {
 
     setIsSidebarOpen(true);
 
-      barOpenRef.current.style.display = "none";
-      barCloseRef.current.style.display = "block";
+    barOpenRef.current.style.display = "none";
+    barCloseRef.current.style.display = "block";
   };
   const handleCloseSidebar = () => {
     sidebarRef.current?.classList.remove("sidebar-active", "sidebar-deactive");
@@ -43,8 +44,8 @@ export default function App() {
 
     setIsSidebarOpen(false);
 
-      barOpenRef.current.style.display = "block";
-      barCloseRef.current.style.display = "none";
+    barOpenRef.current.style.display = "block";
+    barCloseRef.current.style.display = "none";
   };
 
   return (
@@ -145,6 +146,18 @@ export default function App() {
             <Content isSidebarOpen={isSidebarOpen} children={<Categories />} />
           }
         />
+
+        <Route
+          path="/tickets"
+          element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets />} />}>
+            
+            
+            <Route path="" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
+            <Route path="users" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
+            <Route path="create" element={<Content isSidebarOpen={isSidebarOpen} children={<Tickets/>}/>}/>
+
+            </Route>
+
         <Route
           path="/settings"
           element={

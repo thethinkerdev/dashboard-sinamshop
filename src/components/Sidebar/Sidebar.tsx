@@ -8,12 +8,15 @@ import {
   BiSolidDiscount,
   BiSolidCategory,
   BiCode,
+  BiSupport,
+  BiHelpCircle,
 } from "react-icons/bi";
 
 import {
   BsBagCheckFill,
   BsBagDashFill,
   BsDatabaseAdd,
+  BsPeopleFill,
   BsReceipt,
 } from "react-icons/bs";
 import { TbLockAccess } from "react-icons/tb";
@@ -34,7 +37,7 @@ import { LegacyRef } from "react";
 interface Props {
   sidebarRef: LegacyRef<HTMLElement>;
 }
-export default function Sidebar({ sidebarRef}: Props) {
+export default function Sidebar({ sidebarRef }: Props) {
   return (
     <aside
       className={`sidebar transition-all fixed top-0 right-0 bg-slate-800 w-80 h-screen translate-x-full md:translate-x-0 overflow-y-scroll`}
@@ -141,6 +144,25 @@ export default function Sidebar({ sidebarRef}: Props) {
           icon={<BsDatabaseAdd />}
           to="/categories/create"
           text="ایجاد دسته"
+        />
+
+        <SidebarLabelItem text="پشتیبانی" />
+
+        <SidebarItem
+          icon={<BiHelpCircle />}
+          to="/tickets/users"
+          text="تیکت‌ها"
+        />
+
+        <SidebarItem
+          icon={<BiSupport />}
+          to="/tickets"
+          text="تیکت‌های من"
+        />
+        <SidebarItem
+          icon={<BsDatabaseAdd />}
+          to="/tickets/create"
+          text="ایجاد تیکت"
         />
 
         <SidebarLabelItem text="شخصی" />
