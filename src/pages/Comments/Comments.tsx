@@ -2,6 +2,8 @@ import Title from "../../components/Title";
 import Comment, {
   Props as CommentProps,
 } from "../../components/Comment/Comment";
+import OrderBy from "../../components/Buttons/OrderBy";
+import Filter from "../../components/Buttons/Filter";
 
 export default function Comments() {
   const comments: CommentProps[] = [
@@ -34,22 +36,14 @@ export default function Comments() {
 
       <div className="flex items-center justify-between mt-3 flex-wrap">
         <div>
-          <button className="px-3 py-2 border border-slate-900 shadow active:bg-slate-900 active:text-slate-100">
-            جدیدترین
-          </button>
-          <button className="px-3 py-2 border border-slate-900 shadow bg-slate-900 text-slate-100">
-            قدیمی‌ترین
-          </button>
+          <OrderBy active>جدیدترین</OrderBy>
+          <OrderBy>قدیمی‌ترین</OrderBy>
         </div>
 
         <div>
-          فیلتر :
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border border-fuchsia-500 text-fuchsia-500">
-            تایید نشده
-          </button>
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border">
-            تایید شده
-          </button>
+          <span>فیلتر :</span>
+          <Filter>تایید نشده</Filter>
+          <Filter active>تایید شده</Filter>
         </div>
       </div>
 

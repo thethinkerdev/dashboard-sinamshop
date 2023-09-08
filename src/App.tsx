@@ -20,6 +20,7 @@ import CreateArticle from "./pages/Articles/CreateArticle";
 import Shadow from "./components/Shadow";
 import Tickets from "./pages/Tickets";
 import SidebarContext from "./context/SidebarContext";
+import CreateDiscount from "./pages/Discounts/CreateDiscount";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
@@ -101,6 +102,12 @@ export default function App() {
           path="/discounts"
           element={<Content children={<Discounts />} />}
         />
+
+        <Route
+          path="/discounts/create"
+          element={<Content children={<CreateDiscount />} />}
+        />
+
         <Route
           path="/categories"
           element={<Content children={<Categories />} />}

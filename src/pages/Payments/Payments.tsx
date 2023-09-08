@@ -1,9 +1,8 @@
 import Title from "../../components/Title";
 import Table from "../../components/Table";
-import ButtonTrash from "../../components/Buttons/ButtonRedirectToEdit";
-import ButtonRedirectToEdit from "../../components/Buttons/ButtonTrash";
-import TableHeadItem from "../../components/Table/TableHeadItem";
 import PaymentProducts from "../../components/Payments/PaymentProducts";
+import OrderBy from "../../components/Buttons/OrderBy";
+import Filter from "../../components/Buttons/Filter";
 
 export default function Products() {
   return (
@@ -12,25 +11,15 @@ export default function Products() {
 
       <div className="flex items-center justify-between mt-3 flex-wrap">
         <div>
-          <button className="px-3 py-2 border border-slate-900 shadow active:bg-slate-900 active:text-slate-100">
-            جدیدترین
-          </button>
-          <button className="px-3 py-2 border border-slate-900 shadow bg-slate-900 text-slate-100">
-            قدیمی‌ترین
-          </button>
+          <OrderBy>جدیدترین</OrderBy>
+          <OrderBy active>قدیمی‌ترین</OrderBy>
         </div>
 
         <div>
-          فیلتر :
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border border-fuchsia-500 text-fuchsia-500">
-            موفق آمیز
-          </button>
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border">
-            ناموفق
-          </button>
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border border-fuchsia-500 text-fuchsia-500">
-            درحالا انجام / رها شده
-          </button>
+          <span>فیلتر :</span>
+
+          <Filter active>ناموفق</Filter>
+          <Filter>درحالا انجام / رها شده</Filter>
         </div>
       </div>
 

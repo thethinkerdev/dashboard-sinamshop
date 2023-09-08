@@ -4,6 +4,7 @@ import ButtonTrash from "../../components/Buttons/ButtonRedirectToEdit";
 import ButtonRedirectToEdit from "../../components/Buttons/ButtonTrash";
 import TableHeadItem from "../../components/Table/TableHeadItem";
 import ButtonRedirect from "../../components/Buttons/ButtonRedirect";
+import OrderBy from "../../components/Buttons/OrderBy";
 
 export default function Articles() {
   return (
@@ -17,16 +18,9 @@ export default function Articles() {
       </div>
       <div className="flex items-center justify-between mt-3 flex-wrap">
         <div>
-          <button className="px-3 py-2 border border-slate-900 shadow active:bg-slate-900 active:text-slate-100">
-            جدیدترین
-          </button>
-          <button className="px-3 py-2 border border-slate-900 shadow bg-slate-900 text-slate-100">
-            قدیمی‌ترین
-          </button>
-
-          <button className="px-3 py-2 border border-slate-900 shadow active:bg-slate-900 active:text-slate-100">
-            بیشترین بازدید
-          </button>
+          <OrderBy active>جدیدترین</OrderBy>
+          <OrderBy>قدیمی‌ترین</OrderBy>
+          <OrderBy>بیشترین بازدید</OrderBy>
         </div>
       </div>
 

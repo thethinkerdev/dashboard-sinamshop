@@ -4,6 +4,8 @@ import ButtonTrash from "../../components/Buttons/ButtonRedirectToEdit";
 import ButtonRedirectToEdit from "../../components/Buttons/ButtonTrash";
 import TableHeadItem from "../../components/Table/TableHeadItem";
 import ButtonRedirect from "../../components/Buttons/ButtonRedirect";
+import Filter from "../../components/Buttons/Filter";
+import OrderBy from "../../components/Buttons/OrderBy";
 
 export default function Products() {
   return (
@@ -11,29 +13,21 @@ export default function Products() {
       <div className="flex items-center justify-between flex-wrap space-y-5 sm:space-y-0">
         <Title>مدیریت محصولات</Title>
 
-        <ButtonRedirect status="create" to="/products/create">افزودن محصول</ButtonRedirect>
+        <ButtonRedirect status="create" to="/products/create">
+          افزودن محصول
+        </ButtonRedirect>
       </div>
       <div className="flex items-center justify-between mt-3 flex-wrap">
         <div>
-          <button className="px-3 py-2 border border-slate-900 shadow active:bg-slate-900 active:text-slate-100">
-            جدیدترین
-          </button>
-          <button className="px-3 py-2 border border-slate-900 shadow bg-slate-900 text-slate-100">
-            قدیمی‌ترین
-          </button>
+          <OrderBy active>جدیدترین</OrderBy>
+          <OrderBy>قدیمی ترین</OrderBy>
         </div>
 
         <div>
-          فیلتر :
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border border-fuchsia-500 text-fuchsia-500">
-            بیشترین فروش
-          </button>
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border">
-            بدون خرید
-          </button>
-          <button className="px-3 py-2 shadow-2xl shadow-fuchsia-500 border border-fuchsia-500 text-fuchsia-500">
-            بدون موجودی
-          </button>
+          <span>فیلتر :</span>
+          <Filter active>بیشترین فروش</Filter>
+          <Filter>بدون خرید</Filter>
+          <Filter active>بدون موجودی</Filter>
         </div>
       </div>
 
