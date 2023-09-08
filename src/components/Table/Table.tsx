@@ -10,10 +10,10 @@ interface Props {
 }
 export default function Table({ children }: Props) {
   return (
-    <div className="flex flex-col mt-3">
-      <div className="overflow-x-auto">
-        <div className="inline-block">
-          <div className="overflow-hidden">
+    <div className="flex flex-col mt-3 w-full">
+      <div className="overflow-x-auto w-full">
+        <div className="inline-block w-full">
+          <div className="overflow-hidden w-full">
             <table className="min-w-full text-center text-sm font-light">
               {children}
             </table>
@@ -30,4 +30,3 @@ Table.BodyItem = TableBodyItem;
 
 Table.Head = TableHead;
 Table.HeadItem = TableHeadItem;
-

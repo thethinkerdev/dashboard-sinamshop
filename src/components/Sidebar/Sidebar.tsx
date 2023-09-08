@@ -42,7 +42,7 @@ export default function Sidebar({ sidebarRef }: Props) {
       className={`sidebar transition-all fixed top-0 right-0 bg-slate-800 w-80 h-screen translate-x-full md:translate-x-0 overflow-y-scroll`}
       ref={sidebarRef}
     >
-      <ul className="p-0 overflow-hidden">
+      <ul className="p-0">
         <SidebarLogoItem />
         <SidebarItem icon={<AiFillDashboard />} to="/" text="داشبورد" />
 

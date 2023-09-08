@@ -16,7 +16,7 @@ export default function SidebarItemExit({ children, to, icon, text }: Props) {
   );
 
   return (
-    <li className="p-3 w-[300px] text-rose-500 border-2 bg-rose-100 border-rose-500 flex space-x-4 space-x-reverse items-center mr-1">
+    <li className="p-3 w-full text-rose-500 border-2 bg-rose-100 border-rose-500 flex space-x-4 space-x-reverse items-center">
       {icon && <span style={{ fontSize: "30px" }}>{icon}</span>}
       {textElement}
     </li>
