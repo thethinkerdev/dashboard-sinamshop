@@ -8,12 +8,9 @@ import Label from "../../components/Form/Label";
 import "jalaali-react-date-picker/lib/styles/index.css";
 import File from "../../components/Form/File";
 import Textarea from "../../components/Form/Textarea";
-
-// Ckeditor
-import "./../../ckeditor/build/ckeditor";
 import { useEffect } from "react";
 
-export default function Settings() {
+export default function CreateTicket() {
   useEffect(() => {
     ClassicEditor.create(document.querySelector("#textarea"), {
       simpleUpload: {
@@ -35,29 +32,17 @@ export default function Settings() {
   return (
     <section>
       <div className="flex items-center justify-between flex-wrap space-y-5 sm:space-y-0 border-b border-solid border-slate-300 pb-4">
-        <Title>ویرایش اطلاعات</Title>
+        <Title>ثبت تیکت</Title>
 
-        <ButtonBack status="back" to="/">
+        <ButtonBack status="back" to="/discounts">
           بازگشت
         </ButtonBack>
       </div>
 
       <Form className="mt-3">
-        <Box className="flex flex-wrap justify-center space-x-4 space-x-reverse">
-          <Box className="space-y-3 space-y-reverse">
-            <Label className="block">نام</Label>
-            <Input />
-          </Box>
-
-          <Box className="space-y-3 space-y-reverse">
-            <Label className="block">ایمیل</Label>
-            <Input />
-          </Box>
-
-          <Box className="space-y-3 space-y-reverse">
-            <Label className="block">تلفن همراه</Label>
-            <Input />
-          </Box>
+        <Box className="space-y-3 space-y-reverse">
+          <Label className="block">نام تیکت</Label>
+          <Input />
         </Box>
 
         <Box className="space-y-3 space-y-reverse">
@@ -65,12 +50,14 @@ export default function Settings() {
           <Textarea id="textarea" wFull></Textarea>
         </Box>
 
+
         <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">تصویر</Label>
+          <Label className="block">پیوست</Label>
           <File />
         </Box>
 
-        <Submit>ثبت تغییرات</Submit>
+
+        <Submit>ایجاد تیکت</Submit>
       </Form>
     </section>
   );

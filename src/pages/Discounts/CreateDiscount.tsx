@@ -5,39 +5,15 @@ import Box from "../../components/Form/Box";
 import Submit from "../../components/Form/Submit";
 import Input from "../../components/Form/Input";
 import Label from "../../components/Form/Label";
-import File from "../../components/Form/File";
-import Textarea from "../../components/Form/Textarea";
+import "jalaali-react-date-picker/lib/styles/index.css";
+import { InputDatePicker } from "jalaali-react-date-picker";
 import ReactSelect from "react-select";
-
-// Ckeditor
-import "../../ckeditor/build/ckeditor";
-import { useEffect } from "react";
 
 export default function CreateDiscount() {
   const options = [
-    { value: "blues", label: "Blues" },
-    { value: "rock", label: "Rock" },
-    { value: "jazz", label: "Jazz" },
-    { value: "orchestra", label: "Orchestra" },
+    { value: "percent", label: "درصدی" },
+    { value: "money", label: "قیمتی" },
   ];
-
-  useEffect(() => {
-    ClassicEditor.create(document.querySelector("#textarea"), {
-      simpleUpload: {
-        // The URL that the images are uploaded to.
-        uploadUrl: "/admin/panel/upload-image",
-
-        // Enable the XMLHttpRequest.withCredentials property.
-        withCredentials: true,
-
-        // Headers sent along with the XMLHttpRequest to the upload server.
-        headers: {
-          "X-CSRF-TOKEN": "CSRF-Token",
-          Authorization: "Bearer <JSON Web Token>",
-        },
-      },
-    }).catch((error) => {});
-  }, []);
 
   return (
     <section>
@@ -50,48 +26,31 @@ export default function CreateDiscount() {
       </div>
 
       <Form className="mt-3">
-        <Box className="grid grid-cols-2 place-items-center">
-          <Box className="space-y-3 space-y-reverse">
-            <Label className="block">نام تخفیف</Label>
-            <Input />
-          </Box>
-
-          <Box className="mt-3 space-y-3 space-y-reverse">
-            <Label className="block">قیمت</Label>
-            <Input direction="ltr" price placeholder="123,000" />
-          </Box>
-        </Box>
-
         <Box className="space-y-3 space-y-reverse">
-          <Label className="block">توضیحات</Label>
-          <Textarea id="textarea" wFull></Textarea>
-        </Box>
-
-        <Box className="grid grid-cols-2 place-items-center">
-          <Box className="mt-3 space-y-3 space-y-reverse">
-            <Label className="block">تصویر محصول</Label>
-            <File />
-          </Box>
-
-          <Box className="mt-3 space-y-3 space-y-reverse">
-            <Label className="block">دیگر تصاویر محصول</Label>
-            <File multiple />
-          </Box>
+          <Label className="block">نام تخفیف</Label>
+          <Input />
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">دستهٔ محصول</Label>
+          <Label className="block">نوع تخفیف</Label>
           <ReactSelect options={options} />
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">ویژگی محصول</Label>
-          <ReactSelect options={options} />
+          <Label className="block">مقدار تخفیف</Label>
+          <Input />
         </Box>
 
         <Box className="mt-3 space-y-3 space-y-reverse">
-          <Label className="block">تخفیف محصول</Label>
-          <ReactSelect options={options} />
+          <Label className="block">تاریخ انقضاء</Label>
+          <InputDatePicker />
+        </Box>
+
+        <Box className="mt-3 space-y-3 space-y-reverse">
+          <Label className="block flex items-center space-x-2 space-x-reverse">
+            <span>فعال</span>
+            <input type="checkbox" />
+          </Label>
         </Box>
 
         <Submit>ایجاد محصول</Submit>

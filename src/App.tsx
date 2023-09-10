@@ -21,6 +21,9 @@ import Shadow from "./components/Shadow";
 import Tickets from "./pages/Tickets";
 import SidebarContext from "./context/SidebarContext";
 import CreateDiscount from "./pages/Discounts/CreateDiscount";
+import CreateCategory from "./pages/Categories/CreateCategory";
+import CreateTicket from "./pages/Tickets/CreateTicket";
+import ChangePassword from "./pages/Settings/ChangePassword";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean | null>(null);
@@ -113,18 +116,27 @@ export default function App() {
           element={<Content children={<Categories />} />}
         />
 
-        <Route path="/tickets" element={<Content children={<Tickets />} />}>
-          <Route path="" element={<Content children={<Tickets />} />} />
-          <Route path="users" element={<Content children={<Tickets />} />} />
-          <Route path="create" element={<Content children={<Tickets />} />} />
-        </Route>
+        <Route
+          path="/categories/create"
+          element={<Content children={<CreateCategory />} />}
+        />
+
+        <Route path="/tickets" element={<Content children={<Tickets />} />} />
+        {/* <Route path="" element={<Content children={<Tickets />} />} />
+          <Route path="users" element={<Content children={<Tickets />} />} /> */}
+        {/* </Route> */}
+
+        <Route
+          path="/tickets/create"
+          element={<Content children={<CreateTicket />} />}
+        />
 
         <Route path="/settings" element={<Content children={<Settings />} />} />
         <Route path="/messages" element={<Content children={<Messages />} />} />
 
         <Route
           path="/change-password"
-          element={<Content children={<Messages />} />}
+          element={<Content children={<ChangePassword />} />}
         />
 
         <Route path="*" element={<NotFound />} />
