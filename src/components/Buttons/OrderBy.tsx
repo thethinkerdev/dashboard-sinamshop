@@ -1,11 +1,17 @@
 import React, { ButtonHTMLAttributes, useMemo } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  text?: string;
+  children?: React.ReactNode;
   active?: boolean;
 }
 
-export default function OrderBy({ active = false, children, ...rest }: Props) {
+export default function OrderBy({
+  text,
+  active = false,
+  children,
+  ...rest
+}: Props) {
   const btnClassActivated = useMemo(
     () =>
       active
@@ -16,7 +22,7 @@ export default function OrderBy({ active = false, children, ...rest }: Props) {
 
   return (
     <button className={`${btnClassActivated}`} {...rest}>
-      {children}
+      {text ?? children}
     </button>
   );
 }
